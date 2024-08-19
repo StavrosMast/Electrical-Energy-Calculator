@@ -58,8 +58,8 @@ class EnergyCalculator(tk.Frame):
         fixedCharge = float(root.fixedChrg.get())/2
         regulatedCharges = kwhUsed*0.00844
         otherRegulatedFees = kwhUsed*0.0069
-
-        airPolutionFees = kwhUsed*0.17
+        restCharges = kwhUsed*0.00008
+        airPolutionFees = kwhUsed*0.017
         efkFee = kwhUsed*0.0022
 
         daysCharged = int(root.daysChrg.get())
@@ -70,7 +70,7 @@ class EnergyCalculator(tk.Frame):
 
         ertFee = (daysCharged/365)*36.00
 
-        totalCharge = energyCost+fixedCharge+regulatedCharges+otherRegulatedFees+airPolutionFees+efkFee+communityFee+communityVat+propertyTax+ertFee
+        totalCharge = energyCost+fixedCharge+regulatedCharges+otherRegulatedFees+restCharges+airPolutionFees+efkFee+communityFee+communityVat+propertyTax+ertFee
         # finalCharge = round(totalCharge,1)
         root.resultLabel.config(text=totalCharge)
 if __name__ == "__main__":
