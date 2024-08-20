@@ -37,14 +37,14 @@ class EnergyCalculator(tk.CTkFrame):
         daysCharged.pack()
         self.daysChrg = daysCharged 
 
-        result = CTkLabel(centerFrame)
+        result = CTkLabel(centerFrame,text="")
         result.pack()
         self.resultLabel = result
 
-        showResultButton = CTkButton(root,text='Show Result',command=self.showResult)
+        showResultButton = CTkButton(root,text='Show Result',command=self.showResult,corner_radius=15)
         showResultButton.pack()
 
-        closeButton = CTkButton(root,text='Quit',command=root.quit)
+        closeButton = CTkButton(root,text='Quit',command=root.quit,corner_radius=15)
         closeButton.pack()
     def showResult(root):
         startKwh = float(root.startKwh.get())
@@ -74,4 +74,5 @@ class EnergyCalculator(tk.CTkFrame):
 if __name__ == "__main__":
     root = tk.CTk()
     EnergyCalculator(root).pack(side="top", fill="both", expand=True)
+    root.geometry("500x400")
     root.mainloop()
