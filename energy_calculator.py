@@ -1,52 +1,50 @@
-import tkinter as tk
-from tkinter import Label,Frame,Button,Entry,Text
 import math
+import customtkinter as tk
+from customtkinter import CTkButton,CTkFrame,CTkLabel,CTkEntry
 
-import tkinter as tk
-
-class EnergyCalculator(tk.Frame):
+class EnergyCalculator(tk.CTkFrame):
     def __init__(self, parent, *args, **kwargs):
-        tk.Frame.__init__(self, parent, *args, **kwargs)
+        tk.CTkFrame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
-        centerFrame = Frame(root)
+        centerFrame = CTkFrame(root)
         centerFrame.pack()
 
-        startingLabel = Label(centerFrame,text="Starting KWh")
+        startingLabel = CTkLabel(centerFrame,text="Starting KWh")
         startingLabel.pack()
 
-        startingKwh = Entry(centerFrame,bd=5)
+        startingKwh = CTkEntry(centerFrame)
         startingKwh.pack()
         self.startKwh = startingKwh
 
-        currentLabel = Label(centerFrame,text="Current KWh")
+        currentLabel = CTkLabel(centerFrame,text="Current KWh")
         currentLabel.pack()
 
-        currentKwh = Entry(centerFrame,bd=5)
+        currentKwh = CTkEntry(centerFrame)
         currentKwh.pack()
         self.currKwh = currentKwh
 
-        fixedChargeLabel = Label(centerFrame,text="Fixed Fees")
+        fixedChargeLabel = CTkLabel(centerFrame,text="Fixed Fees")
         fixedChargeLabel.pack()
         
-        fixedCharge = Entry(centerFrame,bd=5)
+        fixedCharge = CTkEntry(centerFrame)
         fixedCharge.pack()
         self.fixedChrg = fixedCharge 
 
-        daysChargedLabel = Label(centerFrame,text="Days Charged")
+        daysChargedLabel = CTkLabel(centerFrame,text="Days Charged")
         daysChargedLabel.pack()
         
-        daysCharged = Entry(centerFrame,bd=5)
+        daysCharged = CTkEntry(centerFrame)
         daysCharged.pack()
         self.daysChrg = daysCharged 
 
-        result = Label(centerFrame)
+        result = CTkLabel(centerFrame)
         result.pack()
         self.resultLabel = result
 
-        showResultButton = Button(root,text='Show Result',command=self.showResult)
+        showResultButton = CTkButton(root,text='Show Result',command=self.showResult)
         showResultButton.pack()
 
-        closeButton = Button(root,text='Quit',command=root.quit)
+        closeButton = CTkButton(root,text='Quit',command=root.quit)
         closeButton.pack()
     def showResult(root):
         startKwh = float(root.startKwh.get())
@@ -72,8 +70,8 @@ class EnergyCalculator(tk.Frame):
 
         totalCharge = energyCost+fixedCharge+regulatedCharges+otherRegulatedFees+restCharges+airPolutionFees+efkFee+communityFee+communityVat+propertyTax+ertFee
         # finalCharge = round(totalCharge,1)
-        root.resultLabel.config(text=totalCharge)
+        root.resultLabel.configure(text=totalCharge)
 if __name__ == "__main__":
-    root = tk.Tk()
+    root = tk.CTk()
     EnergyCalculator(root).pack(side="top", fill="both", expand=True)
     root.mainloop()
